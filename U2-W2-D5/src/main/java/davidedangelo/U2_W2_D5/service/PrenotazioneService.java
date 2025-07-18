@@ -27,15 +27,15 @@ public class PrenotazioneService {
         idValido(postazioneID);
         if (data == null || data.isBefore(LocalDate.now())) throw new IllegalArgumentException("Data non valida");
 
-        Utente utente = utenteService.findByUsername(username)
+        Utente utente = utenteService.findByUsernameIgnoreCase(username)
                 .orElseThrow(() -> new IllegalArgumentException("Utente non trovato"));
         Postazione postazione = postazioneService.findById(postazioneID)
                 .orElseThrow(() -> new IllegalArgumentException("Postazione non trovata"));
 
-        if (prenotazioneRepository.existByUtenteAndData(utente, data))
+        if (prenotazioneRepository.existsByUtenteAndDataPrenotazione(utente, data))
             throw new IllegalStateException("Hai già una prenotazione per questa data");
 
-        if (prenotazioneRepository.existByPostazioneAndData(postazione, data))
+        if (prenotazioneRepository.existsByPostazioneAndDataPrenotazione(postazione, data))
             throw new IllegalStateException("Postazione già prenotata in quella data");
 
         Prenotazione p = new Prenotazione(utente, postazione, data);

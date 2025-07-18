@@ -20,10 +20,10 @@ public class PostazioneService {
         return postazioneRepository.save(postazione);
     }
 
-    public List<Postazione> findByTipoAndCitta(TipoPostazione tipo, String citta) {
+    public List<Postazione> findByTipoAndCittaIgnoreCase(TipoPostazione tipo, String citta) {
         if (tipo == null) throw new IllegalArgumentException("Tipo obbligatorio");
         if (isNullOrBlank(citta)) throw new IllegalArgumentException("Città obbligatoria");
-        return postazioneRepository.findByTipoAndCitta(tipo, citta);
+        return postazioneRepository.findByTipoAndEdificio_CittaIgnoreCase(tipo, citta);
     }
 
     public Optional<Postazione> findById(Long id){

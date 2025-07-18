@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PostazioneRepository extends JpaRepository <Postazione, Long> {
-    List<Postazione> findByTipoAndCitta(TipoPostazione tipo, String citta);
+    List<Postazione> findByTipoAndEdificio_CittaIgnoreCase(TipoPostazione tipo, String citta);
 }

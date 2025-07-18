@@ -14,7 +14,7 @@ public class UtenteService {
     @Autowired
     private UtenteRepository utenteRepository;
 
-    private Utente saveUtente(Utente utente){
+    public Utente saveUtente(Utente utente){
         validaUtente(utente);
         return utenteRepository.save(utente);
     }
@@ -28,9 +28,9 @@ public class UtenteService {
         return utenteRepository.findById(id);
     }
 
-    public Optional<Utente> findByUsername(String username){
+    public Optional<Utente> findByUsernameIgnoreCase(String username){
         if (isNullOrBlank(username)) throw new IllegalArgumentException("username obbligatorio");
-        return utenteRepository.findByUsername(username);
+        return utenteRepository.findByUsernameIgnoreCase(username);
     }
 
     private boolean isNullOrBlank(String s) {
