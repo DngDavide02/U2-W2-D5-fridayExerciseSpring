@@ -52,6 +52,7 @@ public class ApplicationRunner implements CommandLineRunner{
         System.out.println("Prenotazioni create con successo");*/
 
         //-----------------------------------------test metodi-------------------------------------------------
+        System.out.println();
         System.out.println("--------------------edificio service----------------------------");
         edificioService.findAll().forEach(System.out::println);
         edificioService.findById(3L).ifPresent(System.out::println);
