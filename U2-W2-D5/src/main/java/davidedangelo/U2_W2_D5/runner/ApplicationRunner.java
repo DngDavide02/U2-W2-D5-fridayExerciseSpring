@@ -68,7 +68,7 @@ public class ApplicationRunner implements CommandLineRunner{
         System.out.println("------------------------utente service--------------------------------");
         utenteService.findAll().forEach(System.out::println);
         utenteService.findByUsernameIgnoreCase("marco.neri");
-        utenteService.findById(2L);
+        utenteService.findById(2L).ifPresent(System.out::println);
         System.out.println();
 
     }
